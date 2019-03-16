@@ -1,28 +1,39 @@
 #ifndef SELEMTYPE_H_INCLUDED
 #define SELEMTYPE_H_INCLUDED
 
-#include <string>
-#define EQ(a, b) ((a) == (b))
-#define LT(a, b) ((a) <= (b))
-#define LQ(a, b) ((a) < (b))
+#include <cstring>
+#define EQ(a, b) (strcmp((a),(b)) == 0)
+#define LT(a, b) (strcmp((a),(b)) < 0)
+#define LQ(a, b) (strcmp((a),(b)) <= 0)
+#define WORD_LEN 36
 typedef char* KeyType;
-#define WORD_LEN 32
 
-public class Data{
-   public int page;
-   public int line;
-   public Data* next;
+class Data{
+public:
+   int page;
+   int line;
+   Data* next;
    Data(int i, int j){
        page = i;
        line = j;
+       next = NULL;
    }
 };
-public class ElemType{
-    public KeyType key;
-    public int nums;
-    public Data* data;
+class ElemType{
+public:
+    KeyType key;
+    int nums;
+    Data* data;
     ElemType(){
-        key = new char[WORD_LEN 32];
+        key = new char[WORD_LEN];
+        strcpy(key, "");
         int nums = 0;
+        data = NULL;
     }
+
 };
+
+
+
+#endif // SELEMTYPE_H_INCLUDED
+
