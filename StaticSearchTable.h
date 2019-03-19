@@ -7,7 +7,7 @@ class SSTable{
     ElemType* elem;
     int length;
 public:
-        SSTable(){
+    STable(){
         elem = NULL;
         length = 0;
     };
@@ -15,12 +15,16 @@ public:
     bool TraverseSSTable();
     int Search_Seq(KeyType key);
     int Search_Bin(KeyType key);
+    void WordInfor(int i);
+    bool DestroySSTable();
     ~SSTable(){
         if(this->elem){
-            delete elem;
+            cout<<"调用sstable的析构函数\n";
+            delete [] elem;
             elem = NULL;
         }
     };
 };
+//int EQ(char* s1, char* s2);
 
-#endif // STATICSEARCHTABLE_H_INCLUDED
+#endif /
