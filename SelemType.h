@@ -2,10 +2,12 @@
 #define SELEMTYPE_H_INCLUDED
 
 #include <cstring>
-#define EQ(a, b) (strcmp((a),(b)) == 0)
+#include <iostream>
+#define EQ(a, b) (!strcmp((a),(b)))
 #define LT(a, b) (strcmp((a),(b)) < 0)
 #define LQ(a, b) (strcmp((a),(b)) <= 0)
-#define WORD_LEN 36
+#define WORD_LEN 32
+using namespace std;
 typedef char* KeyType;
 
 class Data{
@@ -17,6 +19,13 @@ public:
        page = i;
        line = j;
        next = NULL;
+   }
+   ~Data(){
+       if(next){
+        //cout<<"调用data的析构函数\n";
+        delete next;
+        next = NULL;
+       }
    }
 };
 class ElemType{
@@ -30,8 +39,20 @@ public:
         int nums = 0;
         data = NULL;
     }
+    ~ElemType(){
+        if(key){
+            cout<<"调用elemtype的析构函数\n";
+            delete key;
+            key = NULL;
+        }
+        if(data){
+            delete data;
+            data = NULL;
+        }
+    }
 
 };
+
 
 
 
