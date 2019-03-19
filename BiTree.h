@@ -1,17 +1,42 @@
 #include "SelemType.h"
-#include <malloc.h>
 #ifndef BITREE_H_INCLUDED
 #define BITREE_H_INCLUDED
-public class BiTree{
-    Elemtype elem;
+class BiTree{
+public:
+    ElemType elem;
     BiTree* left;
     BiTree* right;
-    BiTree(){};
-    public bool SearchBST(KeyType key, BiTree* f, BiTree* &p);
 
-    public bool insertBST(BiTree* &T, KeyType key);
+    BiTree(){
+        left = NULL;
+        right = NULL;
+    };
 
-    public bool DeleteBST(BiTree* &T, );
-    ~BiTree();
+    bool InitSearchBST(const char* file);
+
+    bool TraverseBST();
+
+    bool DestroyBST();
+
+    BiTree* SearchintheBST(KeyType key);
+
+    bool InsertBST(BiTree* &T, KeyType key, int page, int line);
+
+    bool DeletetheBST(KeyType key);
+
+    ~BiTree(){
+        if(left){
+            delete left;
+            left = NULL;
+        }
+        if(right){
+            delete right;
+            right = NULL;
+        }
+    };
 };
-#endif //
+bool SearchBST(BiTree* T, KeyType key, BiTree* f, BiTree* &p);
+bool DeleteBST(BiTree* T, BiTree* f, KeyType key);
+bool DeleteTreeNode(BiTree* p, BiTree* f);
+bool Traverse(BiTree* T);
+#endif // B
