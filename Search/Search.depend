@@ -1,0 +1,26 @@
+# depslib dependency file v1.0
+1553074173 source:f:\大四下\课程设计\search\main.cpp
+	<iostream>
+	"StaticSearchTable.h"
+	"StaticSearchTable.cpp"
+	"BiTree.h"
+	"BiTree.cpp"
+
+1553074395 f:\大四下\课程设计\search\staticsearchtable.h
+	"SelemType.h"
+
+1553072121 f:\大四下\课程设计\search\selemtype.h
+	<cstring>
+	<iostream>
+
+1553005972 f:\大四下\课程设计\search\staticsearchtable.cpp
+	"StaticSearchTable.h"
+	<cstdio>
+
+1553073710 f:\大四下\课程设计\search\bitree.h
+	"SelemType.h"
+
+1553073764 f:\大四下\课程设计\search\bitree.cpp
+	"BiTree.h"
+	<malloc.h>
+
