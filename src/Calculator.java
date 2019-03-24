@@ -5,7 +5,8 @@ import javax.swing.JFrame;
 import javax.swing.BorderFactory;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
 public class Calculator extends JFrame implements ActionListener{
 	private JTextField result_TextField;
 	private JButton button_0, button_1, button_2, button_3, button_4;
@@ -137,7 +138,7 @@ public class Calculator extends JFrame implements ActionListener{
 			    res *= Double.valueOf(text);
 			else if(operatorType.equals("/")) {
 				if(Double.valueOf(text)== 0.0) {
-					result_TextField.setText("±»³ýÊý²»ÄÜÎª0£¡");
+					result_TextField.setText("Â±Â»Â³Ã½ÃŠÃ½Â²Â»Ã„ÃœÃŽÂª0Â£Â¡");
 					isFirstDig = true;
 					return;
 				}
