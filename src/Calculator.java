@@ -138,7 +138,7 @@ public class Calculator extends JFrame implements ActionListener{
 			    res *= Double.valueOf(text);
 			else if(operatorType.equals("/")) {
 				if(Double.valueOf(text)== 0.0) {
-					result_TextField.setText("±»³ýÊý²»ÄÜÎª0£¡");
+					result_TextField.setText("除数不能为0！");
 					isFirstDig = true;
 					return;
 				}
