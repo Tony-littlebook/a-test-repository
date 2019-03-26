@@ -126,6 +126,10 @@ public class Calculator extends JFrame implements ActionListener{
 		isSameDig = false;//每进行一次运算符输入操作，应将isSameDig置为false
 		String text = result_TextField.getText();
 		if(isFirstDig) {
+			if(text.equals("error:被除数不能为0！")) {
+				result_TextField.setText("0");
+				return;
+			}
 			res = Double.valueOf(text);//是第一个操作数，则将中间结果设为第一个操作数
 			isFirstDig = false;
 		}
@@ -138,7 +142,7 @@ public class Calculator extends JFrame implements ActionListener{
 			    res *= Double.valueOf(text);
 			else if(operatorType.equals("/")) {
 				if(Double.valueOf(text)== 0.0) {
-					result_TextField.setText("除数不能为0！");
+					result_TextField.setText("error:被除数不能为0！");
 					isFirstDig = true;
 					return;
 				}
