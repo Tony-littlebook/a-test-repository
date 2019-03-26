@@ -16,17 +16,17 @@ public class Calculator extends JFrame implements ActionListener{
 	private JButton button_Clear, button_Add, button_Dec;
 	private JButton button_Mul, button_Divi, button_Equal;
 	private JPanel pan1, pan2;
-	private String operatorType = "";
-	private double res = 0.0;
-	private boolean isFirstDig = true, isSameDig = true;
+	private String operatorType = "";//运算符类型
+	private double res = 0.0;//存储运算中间结果
+	private boolean isFirstDig = true, isSameDig = true;//是否第一个数：控制中间结果，是否同一数：控制数字输入连接
 	Calculator(){
-		super();
-		this.setBounds(400, 300, 310, 210);
-		this.setResizable(false);
+	    super();
+	    this.setBounds(400, 300, 310, 210);
+	    this.setResizable(false);//设置不可改变显示框大小
 	    this.setTitle("Calculator");
 	    this.setLayout(new BorderLayout());
 	    
-        result_TextField = new JTextField("", 20);
+            result_TextField = new JTextField("", 20);
 	     
 	    button_0 = new JButton("0");
 	    button_1 = new JButton("1");
@@ -102,13 +102,13 @@ public class Calculator extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		String label = e.getActionCommand();
 		if("0123456789.".indexOf(label) >= 0)
-            handleDigit(label);
+                handleDigit(label);
 		else
-			handleOperator(label);
+		    handleOperator(label);
 	}
 	
 	private void handleDigit(String label) {
-		if(!isSameDig)
+		if(!isSameDig)//不是同一数，先将文本编辑栏的内容置零
 			result_TextField.setText("0");
 		String text = result_TextField.getText();
 		if(text.equals("0"))
@@ -116,20 +116,20 @@ public class Calculator extends JFrame implements ActionListener{
 		else {
 		    if(!label.equals("."))
 			    result_TextField.setText(text + label); 
-		    else if(!text.contains("."))
+		    else if(!text.contains("."))//小数点不可多次输入
 			    result_TextField.setText(text + ".");
 		}
 		isSameDig = true;
 	}
 	
 	private void handleOperator(String label) {
-		isSameDig = false;
+		isSameDig = false;//每进行一次运算符输入操作，应将isSameDig置为false
 		String text = result_TextField.getText();
 		if(isFirstDig) {
-			res = Double.valueOf(text);
+			res = Double.valueOf(text);//是第一个操作数，则将中间结果设为第一个操作数
 			isFirstDig = false;
 		}
-		else{
+		else{//否则应计算之前运算的中间结果存储于res中
 			if(operatorType.equals("+")) 
 			    res += Double.valueOf(text);
 			else if(operatorType.equals("-"))
@@ -151,13 +151,13 @@ public class Calculator extends JFrame implements ActionListener{
 			isFirstDig = true;
 		}
 		else if(label.equals("Clear")) {
-        	result_TextField.setText("0");
-        	isFirstDig = true;
-        }
-        else{
-        	result_TextField.setText(String.valueOf(res));
-        	operatorType = label;
-        }
+        	        result_TextField.setText("0");
+        	        isFirstDig = true;
+                }
+                else{//每次输入运算符也显示中间结果在文本编辑栏
+        	        result_TextField.setText(String.valueOf(res));
+        	        operatorType = label;
+                }
 	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
