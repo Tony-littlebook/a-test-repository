@@ -1,6 +1,7 @@
 #ifndef STKPAS_H_INCLUDED
 #define STKPAS_H_INCLUDED
 #include "base.h"
+//stack
 typedef struct{
     int step;
     PosType seat;
