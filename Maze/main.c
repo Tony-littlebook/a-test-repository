@@ -18,6 +18,8 @@ int main()
         ReadCommand(&cmd);
         Interpret(cmd, &maze, &isCreate);
     } while(cmd != 'q');
+    //free(maze.arr);
+    //maze.arr = NULL;
     printf("\n--------------------Welcome again!--------------------\n");
     getchar();
     getchar();
@@ -35,6 +37,7 @@ void DestoryStack(Stack* S){
         while(p != NULL){
             q = p->next;
             free(p);
+            p = NULL;
             p = q;
         }
     }
@@ -154,8 +157,9 @@ void InitMaze(MazeType* maze, int* a, int row,int col){
         }
 }
 int MazePath(MazeType* maze, PosType startPos, PosType endPos){
-    Stack* S = (Stack*)malloc(sizeof(Stack));
-    InitStack(S);
+    //Stack* S = (Stack*)malloc(sizeof(Stack));
+    Stack S;
+    InitStack(&S);
     PosType curpos = startPos;
     int curstep = 1;
     int found = FALSE;
@@ -163,8 +167,8 @@ int MazePath(MazeType* maze, PosType startPos, PosType endPos){
         if(Pass(*maze, curpos)== TRUE){
             FootPrint(maze, curpos);
             ElemType e = {curstep, curpos, 1};
-            Push(S, e);
-            //printf("(%d, %d)\n",e.seat.c, e.seat.r);
+            Push(&S, e);
+            printf("(%d, %d)\n",e.seat.c, e.seat.r);
             if(Same(curpos, endPos)== TRUE) found = TRUE;
             else{
                 curpos = NextPos(curpos, 1);
@@ -172,23 +176,23 @@ int MazePath(MazeType* maze, PosType startPos, PosType endPos){
             }
         }
         else{
-            if(!StackEmpty(*S)){
+            if(!StackEmpty(S)){
                 ElemType e;
-                Pop(S, &e);
-                while(e.di == 4 && !StackEmpty(*S)){
+                Pop(&S, &e);
+                while(e.di == 4 && !StackEmpty(S)){
                     MarkPrint(maze, e.seat);
-                    Pop(S, &e);
+                    Pop(&S, &e);
                     curstep--;
                 }
                 if(e.di < 4){
                    e.di++;
-                   Push(S, e);
+                   Push(&S, e);
                    curpos = NextPos(e.seat, e.di);
                 }
             }
         }
-    }while(StackEmpty(*S) == FALSE && found == FALSE);
-    DestoryStack(S);
+    }while(StackEmpty(S) == FALSE && found == FALSE);
+    DestoryStack(&S);
     return found;
 
 }
@@ -240,7 +244,7 @@ void Initialization(){
     printf("\n\n");
     printf("                     Maze Program\n");
     printf("***********************************************************\n");
-    printf("*CreateMaze-c       MazePath-m     PrintMaze-p       Quit-q*\n");
+    printf("*CreateMaze-c      MazePath-m      PrintMaze-p      Quit-q*\n");
     printf("***********************************************************\n");
     printf("*Enter a operation code : c, m, p OR q                    *\n");
 }
@@ -275,6 +279,8 @@ void Interpret(char cmd, MazeType* maze, int* isCreate){
             }
             fclose(fp);
             InitMaze(maze, a, rnum, cnum);
+            free(a);
+            a = NULL;
             printf("\nmaze create successful!\n");
             *isCreate = TRUE;
             getchar();
@@ -288,6 +294,7 @@ void Interpret(char cmd, MazeType* maze, int* isCreate){
                 scanf("%d,%d", &c1, &r1);
                 printf("\nplease input exit coordinates:");
                 scanf("%d,%d", &c2, &r2);
+                //printf("%d,%d,%d,%d\n", c1,r1,c2,r2);
                 PosType startPos = {c1, r1};
                 PosType endPos = {c2, r2};
                 if(MazePath(maze, startPos, endPos) == TRUE)
