@@ -1,0 +1,25 @@
+import numpy as np
+"""
+a = np.arange(0, 60, 10).reshape((-1, 1)) + np.arange(6)
+print(a)
+print(a[[0, 1, 2], [2, 3, 4]])
+print(a[4, [2, 3, 4]])
+print(a[4:, [2, 3, 4]])
+i = np.array([True, False, True, False, False, True])
+print(a[i])
+print(a[i, 3])
+L = [1, 2, 3, 4, 5, 6]
+b = np.array(L)
+print(b)
+print(b.shape)
+d = np.array([[1, 2, 3, 4], [5, 6, 7, 8,], [9, 10, 11, 12]], dtype = np.float)
+print(d)
+s = np.linspace(1, 10, 10, endpoint = False)
+print(s)
+q = np.logspace(1, 4, 4, endpoint = True, base = 2)
+print(q)
+k = np.random.rand(10)
+print(k > 0.5)
+c = np.array(((1, 2), (3, 4), (5, 6), (7, 8), (3, 4), (7, 6)))
+np.array(list(set([tuple(t) for t in c])))
+"""
