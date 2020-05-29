@@ -37,7 +37,7 @@ public class QueryView extends JFrame{
         queryButton.addActionListener(new ActionListener(){
         	public void actionPerformed(ActionEvent e) {
         		MySqlDatabase mySqlHelper = new MySqlDatabase();
-        		String[] sql = new String[5];
+        		String[] sql = new String[5];//注意此处不可使用preparedstatement；
         		sql[0] = "select * from score order by Chinese desc limit 1";
         		sql[1] = "select * from score order by Mathematic desc limit 1";
         		sql[2] = "select * from score order by English desc limit 1";
